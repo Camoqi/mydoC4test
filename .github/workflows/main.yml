@@ -27,21 +27,11 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
+          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
             rm -rf /opt/nginx/html/testzq.memenet.net/*
-            rsync -avz --delete ./build/ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/opt/nginx/html/testzq.memenet.net
-           
-           
-        - name: Executing remote ssh commands using password
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            password: ${{ secrets.PASSWORD }}
-            port: ${{ secrets.PORT }}
-            script: |
-              /opt/nginx/sbin/nginx -s reload
+            rsync -avz --delete ./build/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/opt/nginx/html/testzq.memenet.net
+            
