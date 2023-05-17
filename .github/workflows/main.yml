@@ -2,26 +2,23 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v2
-    
-    - name: Install and Build
-      run: |
-        npm install
-        npm run build
-    
-    - name: Deploy
-      uses: appleboy/scp-action@master
+
+    - name: Build and Deploy
+      uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        source: "build/"
-        target: "/opt/nginx/html/testzq.memenet.net" # 你的服务器上静态文件的存放路径
+        key: ${{ secrets.SSH_KEY }}
+        port: 10112
+        script: |
+          cd /opt/nginx/html/testzq.memenet.net
+          git pull
+          # Add any build commands you need here
