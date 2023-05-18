@@ -2,8 +2,8 @@ backend:
   name: github
   repo: Camoqi/mydoC4test.git   # 替换为你的 GitHub 用户名和仓库名
   branch: main    # 默认分支。请根据你的设置进行修改
-  base_url: https://testzq.memenet.net:8446
-  auth_endpoint: api/auth
+  base_url: https://exquisite-cannoli-65061b.netlify.app
+  
 
 media_folder: "static/img"  # 根据你的设置进行修改
 public_folder: "/img"   # 根据你的设置进行修改
