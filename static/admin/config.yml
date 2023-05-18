@@ -1,17 +1,19 @@
 backend:
   name: github
-  repo: Camoqi/mydoC4test   # 替换为你的 Github 仓库，例如 'username/repo'
-  branch: main       # 默认的分支名称
+  repo: Camoqi/mydoC4test.git   # 替换为你的 GitHub 用户名和仓库名
+  branch: main    # 默认分支。请根据你的设置进行修改
+  base_url: https://testzq.memenet.net:8446
+  auth_endpoint: api/auth
 
-media_folder: "static/img"  # 保存图片的文件夹路径
-public_folder: "/img"  # 网站上图片的 URL 路径
+media_folder: "static/img"  # 根据你的设置进行修改
+public_folder: "/img"   # 根据你的设置进行修改
 
 collections:
-  - name: "doc"             # 名称
-    label: "Doc"            # 标签，在 CMS 中显示
-    folder: "docs"          # 存储文档的文件夹
-    create: true            # 是否允许创建新文档
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 文件名模板
-    fields:                 # 文档字段
+  - name: "post"   # 你的集合名字
+    label: "Post"  # 你在 CMS 中看到的名字
+    folder: "docs"  # 在你的 repo 中存储文件的位置
+    create: true   # 允许你在 CMS 中添加新的文件
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 文件名格式
+    fields:        # 下面是你的字段
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
